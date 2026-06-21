@@ -1,0 +1,72 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+docker-compose.yml
+docker-compose.override.yml
+Dockerfile
+.dockerignore
+
+# Documentation
+docs/
+README.md
+*.md
+
+# Development/Build artifacts
+__pycache__/
+*.pyc
+node_modules/
+npm-debug.log*
+.Python
+venv/
+env/
+build/
+dist/
+*.egg-info/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+.project
+.pydevproject
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Test files and coverage
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+
+# Helm (not needed in containers)
+helm/
+
+# Agent/Task documentation (not needed at runtime)
+agents/
+tasks/
+
+# Environment/secrets
+.env
+.env.local
+
+# Temporary files
+*.tmp
+*.bak
+*~
+.git/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.circleci/

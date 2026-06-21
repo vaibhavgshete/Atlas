@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Atlas Project</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell shell-narrow">
+      <header class="hero hero-compact">
+        <p class="eyebrow">Atlas</p>
+        <h1>Create Project</h1>
+        <p class="lede">Add a repository-backed project to Atlas.</p>
+      </header>
+
+      <section class="panel">
+        <form id="project-form" class="form">
+          <label class="field">
+            <span>Project Name</span>
+            <input id="name" name="name" type="text" required />
+          </label>
+
+          <label class="field">
+            <span>Repository URL</span>
+            <input id="repositoryUrl" name="repositoryUrl" type="url" required />
+          </label>
+
+          <label class="field">
+            <span>Description</span>
+            <textarea id="description" name="description" rows="5"></textarea>
+          </label>
+
+          <div class="actions">
+            <a class="button button-secondary" href="/index.html">Back</a>
+            <button class="button button-primary" type="submit">Create Project</button>
+          </div>
+        </form>
+
+        <div id="form-message" class="state" hidden></div>
+      </section>
+    </main>
+
+    <script src="/create-project.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: atlas-frontend
+spec:
+  selector:
+    app: atlas-frontend
+  ports:
+    - port: {{ .Values.frontend.service.port }}
+      targetPort: 80

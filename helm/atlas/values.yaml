@@ -1,0 +1,32 @@
+frontend:
+  replicaCount: 1
+  image:
+    repository: atlas-frontend
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 80
+
+backend:
+  replicaCount: 1
+  image:
+    repository: atlas-backend
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 8000
+
+postgres:
+  image:
+    repository: postgres
+    tag: "16-alpine"
+    pullPolicy: IfNotPresent
+  service:
+    port: 5432
+  database: atlas
+  username: atlas
+  password: atlas
+
+resources: {}

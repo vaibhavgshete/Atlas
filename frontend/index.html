@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atlas Projects</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <p class="eyebrow">Atlas</p>
+        <h1>Project Management Foundation</h1>
+        <p class="lede">
+          Register repositories as Atlas projects and manage them through a simple
+          Milestone 1 interface.
+        </p>
+        <a class="button button-primary" href="/create.html">Create Project</a>
+      </header>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Projects</h2>
+          <button id="refresh-button" class="button button-secondary" type="button">
+            Refresh
+          </button>
+        </div>
+        <div id="projects-state" class="state">Loading projects...</div>
+        <div id="projects-list" class="project-grid" hidden></div>
+      </section>
+    </main>
+
+    <script src="/projects.js" type="module"></script>
+  </body>
+</html>
