@@ -19,9 +19,54 @@
         <article id="project-card" class="detail-card" hidden></article>
         <div class="actions">
           <a class="button button-secondary" href="/index.html">Back to Projects</a>
+          <button id="start-scan-button" class="button button-primary" hidden>Start Scan</button>
         </div>
       </section>
+
+      <section class="panel" id="scan-history-panel" style="margin-top: 24px;">
+        <div class="panel-header">
+          <h2>Scan History</h2>
+        </div>
+        <div id="scans-state" class="state">Loading scans...</div>
+        <div id="scans-list" class="project-grid" hidden></div>
+      </section>
+
+      <section class="panel" id="scan-details-panel" style="margin-top: 24px;" hidden>
+        <div class="panel-header">
+          <h2>Scan Details</h2>
+          <button id="close-scan-details-button" class="button button-secondary" type="button">Close</button>
+        </div>
+        <article class="detail-card">
+          <dl class="detail-list">
+            <div>
+              <dt>Scan ID</dt>
+              <dd id="scan-detail-id" class="meta"></dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd id="scan-detail-status"></dd>
+            </div>
+            <div>
+              <dt>Created Time</dt>
+              <dd id="scan-detail-created"></dd>
+            </div>
+            <div>
+              <dt>Started Time</dt>
+              <dd id="scan-detail-started"></dd>
+            </div>
+            <div>
+              <dt>Completed Time</dt>
+              <dd id="scan-detail-completed"></dd>
+            </div>
+            <div id="scan-detail-failure-container" hidden>
+              <dt style="color: var(--danger);">Failure Reason</dt>
+              <dd id="scan-detail-failure" style="color: var(--danger); font-family: monospace; white-space: pre-wrap; background: rgba(159, 18, 57, 0.05); padding: 12px; border-radius: 8px; border: 1px solid rgba(159, 18, 57, 0.1);"></dd>
+            </div>
+          </dl>
+        </article>
+      </section>
     </main>
+
 
     <script src="/project-details.js" type="module"></script>
   </body>

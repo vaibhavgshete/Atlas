@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from contextlib import asynccontextmanager
 
-from fastapi import Depends, FastAPI, HTTPException, Request, Response, status
+from fastapi import BackgroundTasks, Depends, FastAPI, HTTPException, Request, Response, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -10,8 +10,9 @@ from psycopg import Connection
 
 from app.config import settings
 from app.database import connection_scope, initialize_database
-from app.models import ErrorBody, ErrorResponse, Project, ProjectCreate
-from app.repository import ProjectRepository
+from app.models import ErrorBody, ErrorResponse, Project, ProjectCreate, Scan, ScanCreate
+from app.repository import ProjectRepository, ScanRepository
+from app.scanner import run_scan
 
 
 @asynccontextmanager
@@ -37,6 +38,10 @@ def get_connection_dependency() -> Connection:
 
 def get_repository(connection: Connection = Depends(get_connection_dependency)) -> ProjectRepository:
     return ProjectRepository(connection)
+
+
+def get_scan_repository(connection: Connection = Depends(get_connection_dependency)) -> ScanRepository:
+    return ScanRepository(connection)
 
 
 @app.exception_handler(RequestValidationError)
@@ -103,6 +108,72 @@ def delete_project(
             detail=ErrorBody(code="PROJECT_NOT_FOUND", message="Project not found.").model_dump(),
         )
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+
+@app.post(
+    "/api/projects/{project_id}/scans",
+    response_model=Scan,
+    status_code=status.HTTP_201_CREATED,
+    responses={404: {"model": ErrorResponse}},
+)
+def create_scan(
+    project_id: str,
+    background_tasks: BackgroundTasks,
+    project_repository: ProjectRepository = Depends(get_repository),
+    scan_repository: ScanRepository = Depends(get_scan_repository),
+) -> Scan:
+    project = project_repository.get_project(project_id)
+    if project is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=ErrorBody(code="PROJECT_NOT_FOUND", message="Project not found.").model_dump(),
+        )
+
+    scan = scan_repository.create_scan(project_id)
+    background_tasks.add_task(
+        run_scan,
+        scan_id=scan.id,
+        project_id=project_id,
+        repo_url=project.repositoryUrl,
+    )
+    return scan
+
+
+@app.get(
+    "/api/projects/{project_id}/scans",
+    response_model=list[Scan],
+    responses={404: {"model": ErrorResponse}},
+)
+def list_project_scans(
+    project_id: str,
+    project_repository: ProjectRepository = Depends(get_repository),
+    scan_repository: ScanRepository = Depends(get_scan_repository),
+) -> list[Scan]:
+    project = project_repository.get_project(project_id)
+    if project is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=ErrorBody(code="PROJECT_NOT_FOUND", message="Project not found.").model_dump(),
+        )
+    return scan_repository.list_project_scans(project_id)
+
+
+@app.get(
+    "/api/scans/{scan_id}",
+    response_model=Scan,
+    responses={404: {"model": ErrorResponse}},
+)
+def get_scan(
+    scan_id: str,
+    scan_repository: ScanRepository = Depends(get_scan_repository),
+) -> Scan:
+    scan = scan_repository.get_scan(scan_id)
+    if scan is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=ErrorBody(code="SCAN_NOT_FOUND", message="Scan not found.").model_dump(),
+        )
+    return scan
 
 
 @app.exception_handler(HTTPException)

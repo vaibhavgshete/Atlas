@@ -67,3 +67,19 @@ Milestone 1 requires a simple end-to-end application foundation for project crea
 
 Status:
 Accepted
+
+---
+
+## ADR-005
+
+Date: 2026-06-22
+
+Decision:
+Milestone 2 repository scanning will introduce a persistent `Scan` entity linked to a project, track statuses (Pending, Running, Completed, Failed), run cloning as a background task using FastAPI BackgroundTasks, and expose three endpoints: `POST /api/projects/{projectId}/scans`, `GET /api/projects/{projectId}/scans`, and `GET /api/scans/{scanId}`.
+
+Reason:
+Milestone 2 establishes a repository scanning foundation. To ensure scalability and non-blocking responses, scans must execute asynchronously in the background. Tracking history is a core principle (ADR-002), and these endpoints cover creation, status retrieval, and history listings.
+
+Status:
+Accepted
+

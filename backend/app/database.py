@@ -41,3 +41,22 @@ def initialize_database() -> None:
                 )
                 """
             )
+            cursor.execute(
+                """
+                CREATE TABLE IF NOT EXISTS scans (
+                    id TEXT PRIMARY KEY,
+                    project_id TEXT NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+                    status TEXT NOT NULL,
+                    created_at TIMESTAMPTZ NOT NULL,
+                    started_at TIMESTAMPTZ,
+                    completed_at TIMESTAMPTZ,
+                    failure_reason TEXT
+                )
+                """
+            )
+            cursor.execute(
+                """
+                CREATE INDEX IF NOT EXISTS idx_scans_project_id ON scans(project_id)
+                """
+            )
+

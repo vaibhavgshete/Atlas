@@ -22,6 +22,23 @@ class Project(BaseModel):
     updatedAt: datetime
 
 
+class ScanCreate(BaseModel):
+    pass
+
+
+class Scan(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: str
+    projectId: str
+    status: str
+    createdAt: datetime
+    startedAt: datetime | None = None
+    completedAt: datetime | None = None
+    failureReason: str | None = None
+
+
+
 class ErrorBody(BaseModel):
     code: str
     message: str

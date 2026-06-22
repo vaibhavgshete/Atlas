@@ -214,3 +214,88 @@ body {
     align-items: stretch;
   }
 }
+
+/* Scan Badges & Layouts */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 99px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid transparent;
+}
+
+.badge-pending {
+  background: #e2e8f0;
+  color: #4a5568;
+  border-color: #cbd5e0;
+}
+
+.badge-running {
+  background: #fef3c7;
+  color: #d97706;
+  border-color: #fde68a;
+  animation: pulse-animation 2s infinite ease-in-out;
+}
+
+.badge-completed {
+  background: #d1fae5;
+  color: #059669;
+  border-color: #a7f3d0;
+}
+
+.badge-failed {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fca5a5;
+}
+
+@keyframes pulse-animation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.scan-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid rgba(23, 50, 77, 0.1);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  transition: transform 140ms ease, background 140ms ease;
+  cursor: pointer;
+}
+
+.scan-item:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.9);
+  border-color: var(--border);
+}
+
+.scan-item-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.scan-item-title {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.scan-item-date {
+  font-size: 0.85rem;
+  color: rgba(23, 50, 77, 0.65);
+}
+
