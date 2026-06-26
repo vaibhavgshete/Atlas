@@ -44,6 +44,7 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 package-lock.json
+!frontend/package-lock.json
 
 # IDEs
 .vscode/

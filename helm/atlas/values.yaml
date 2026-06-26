@@ -9,7 +9,7 @@ frontend:
     port: 80
 
 backend:
-  replicaCount: 1
+  replicaCount: 2
   image:
     repository: atlas-backend
     tag: latest
