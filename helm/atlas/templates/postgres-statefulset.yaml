@@ -1,8 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: postgres
 spec:
+  serviceName: postgres
   replicas: 1
   selector:
     matchLabels:
@@ -21,3 +22,10 @@ spec:
           envFrom:
             - secretRef:
                 name: {{ include "atlas.fullname" . }}-postgres
+          volumeMounts:
+            - name: atlas-postgres-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: atlas-postgres-data
+          persistentVolumeClaim:
+            claimName: atlas-postgres-pvc
