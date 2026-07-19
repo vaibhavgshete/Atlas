@@ -3,6 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: atlas-postgres-pvc
 spec:
+  storageClassName: gp2
   accessModes:
     - ReadWriteOnce
   volumeMode: Filesystem

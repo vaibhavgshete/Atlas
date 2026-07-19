@@ -1,8 +1,8 @@
 frontend:
   replicaCount: 1
   image:
-    repository: atlas-frontend
-    tag: latest
+    repository: 635218167984.dkr.ecr.ap-south-1.amazonaws.com/atlas-frontend
+    tag: v1
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
@@ -11,8 +11,8 @@ frontend:
 backend:
   replicaCount: 2
   image:
-    repository: atlas-backend
-    tag: latest
+    repository: 635218167984.dkr.ecr.ap-south-1.amazonaws.com/atlas-backend
+    tag: v2
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
@@ -28,5 +28,10 @@ postgres:
   database: atlas
   username: atlas
   password: atlas
+
+migration:
+  enabled: false
+  backoffLimit: 1
+  ttlSecondsAfterFinished: 300
 
 resources: {}
