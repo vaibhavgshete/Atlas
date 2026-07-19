@@ -1,0 +1,34 @@
+{{- if .Values.migration.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "atlas.fullname" . }}-migration
+spec:
+  backoffLimit: {{ .Values.migration.backoffLimit }}
+  ttlSecondsAfterFinished: {{ .Values.migration.ttlSecondsAfterFinished }}
+  template:
+    metadata:
+      labels:
+        app: atlas-migration
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: atlas-migration
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          imagePullPolicy: {{ .Values.backend.image.pullPolicy }}
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "atlas.fullname" . }}-postgres
+                  key: DATABASE_URL
+            - name: ATLAS_SKIP_DB_INIT
+              value: "true"
+          command:
+            - python
+            - -c
+            - |
+              from app.database import initialize_database
+              initialize_database()
+              print("Atlas migration completed.")
+{{- end }}

@@ -25,6 +25,7 @@ spec:
           volumeMounts:
             - name: atlas-postgres-data
               mountPath: /var/lib/postgresql/data
+              subPath: postgres
       volumes:
         - name: atlas-postgres-data
           persistentVolumeClaim:
