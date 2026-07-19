@@ -1,12 +1,17 @@
 from __future__ import annotations
 
 from contextlib import contextmanager
+from threading import Lock
 from typing import Iterator
 
 import psycopg
 from psycopg.rows import dict_row
 
 from app.config import settings
+
+
+_db_init_lock = Lock()
+_db_initialized = False
 
 
 def get_connection() -> psycopg.Connection:
@@ -41,3 +46,16 @@ def initialize_database() -> None:
                 )
                 """
             )
+
+
+def ensure_database_initialized(force: bool = False) -> None:
+    global _db_initialized
+
+    if _db_initialized and not force:
+        return
+
+    with _db_init_lock:
+        if _db_initialized and not force:
+            return
+        initialize_database()
+        _db_initialized = True
