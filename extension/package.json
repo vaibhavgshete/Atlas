@@ -1,0 +1,70 @@
+{
+  "name": "atlas-memory-core",
+  "displayName": "Atlas",
+  "description": "Local project memory for AI coding agents.",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "atlas.enable",
+        "title": "Atlas: Enable",
+        "icon": "$(refresh)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "atlas",
+          "title": "Atlas",
+          "icon": "resources/atlas-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "atlas": [
+        {
+          "id": "atlas.memoryView",
+          "name": "Project Memory"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "atlas.memoryView",
+        "contents": "No project memory yet.\n[Scan Project](command:atlas.enable)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "atlas.enable",
+          "when": "view == atlas.memoryView",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/sql.js": "^1.4.11",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.4.0"
+  },
+  "dependencies": {
+    "ignore": "^5.3.1",
+    "sql.js": "^1.14.1"
+  }
+}

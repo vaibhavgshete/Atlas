@@ -96,3 +96,12 @@ docker-compose.override.yml
 # Logs
 logs/
 *.log
+
+# Atlas VS Code extension
+extension/out/
+*.vsix
+!extension/.vscode/
+!extension/.vscode/*.json
+
+# Atlas local memory storage (created in any workspace Atlas scans)
+.atlas/
