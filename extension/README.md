@@ -38,3 +38,7 @@ Memory is stored at `.atlas/memory.db` (SQLite) inside the scanned workspace. Ad
 * Access the network
 * Store file contents or source code — only structure and dependency facts
 * Share memory with any AI agent yet — that's a future milestone
+
+## Contributing
+
+For how the code is actually organized (file responsibilities, dependency direction, why `sql.js`), see [`ARCHITECTURE.md`](ARCHITECTURE.md).

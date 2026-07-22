@@ -23,6 +23,8 @@ Full roadmap and reasoning: [`project-vision.md`](project-vision.md).
 
 Tasks: [TASK-006](../../tasks/completed/task-006-extension-scaffold-and-workspace-scanner.md) (scaffold + scanner) → [TASK-007](../../tasks/completed/task-007-dependency-parsing-and-sqlite-storage.md) (dependencies + storage) → [TASK-008](../../tasks/completed/task-008-tree-view-sidebar-panel.md) (sidebar view) → [TASK-009](../../tasks/completed/task-009-milestone-1-scope-and-e2e-review.md) (milestone review, Approved).
 
+What's actually implemented, as built: [`extension/ARCHITECTURE.md`](../../extension/ARCHITECTURE.md).
+
 Verified end-to-end against two independent real-world projects in the actual Extension Development Host, plus headless verification of the scanner/parser/storage logic and an independent source-level scope audit (no network calls, no shell execution, no writes outside `.atlas/`).
 
 Known non-blocking limitation: scanning a folder with no local `.gitignore` of its own can surface build-artifact noise (e.g. `__pycache__`), since the scanner only reads a `.gitignore` at the scanned root. Left as-is; revisit only if it becomes a real problem.
