@@ -1,5 +1,8 @@
 # Atlas
 
+[![Atlas CI](https://github.com/vaibhavgshete/Atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/vaibhavgshete/Atlas/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Atlas is building a memory layer for software projects. This repository currently contains two tracks:
 
 ## Atlas Memory Core (`extension/`) — active development
@@ -35,3 +38,7 @@ python -m pytest backend/tests
 ### Helm
 
 The deployment chart is in `helm/atlas`.
+
+## License
+
+[MIT](LICENSE)
