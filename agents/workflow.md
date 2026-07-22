@@ -44,7 +44,7 @@ If the Developer identifies that a task requires an architectural decision:
 1. Developer stops implementation.
 2. Developer documents the question in the task under a `Blockers` section.
 3. Project Manager escalates to the Architect Agent.
-4. Architect reviews and documents the decision in `docs/decision-log.md`.
+4. Architect reviews and documents the decision in `docs/v2/decision-log.md`.
 5. Project Manager returns the task to the Developer with `Active` status.
 
 ---

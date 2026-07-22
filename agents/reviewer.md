@@ -27,7 +27,7 @@ The Reviewer Agent must reject:
 * No scope creep — only what was requested was implemented
 * No architecture violations
 * No undocumented assumptions
-* Implementation aligns with referenced ADRs in `docs/decision-log.md`
+* Implementation aligns with referenced ADRs in `docs/v2/decision-log.md`
 
 ---
 

@@ -12,7 +12,7 @@ Owns architecture and design validation.
 * Follow requirements
 * Protect architectural consistency
 * Prevent scope creep
-* Document all architectural decisions in `docs/decision-log.md`
+* Document all architectural decisions in `docs/v2/decision-log.md`
 
 ---
 
@@ -56,7 +56,7 @@ If uncertainty exists, request clarification rather than making assumptions.
 
 ## Decision Log Ownership
 
-The Architect Agent is responsible for writing ADR entries in `docs/decision-log.md` whenever an architectural decision is made or changed.
+The Architect Agent is responsible for writing ADR entries in `docs/v2/decision-log.md` whenever an architectural decision is made or changed.
 
 Each ADR must include:
 

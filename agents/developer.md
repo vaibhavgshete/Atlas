@@ -24,7 +24,7 @@ If the task conflicts with project documentation, implementation must stop and t
 ## Must
 
 * Read all referenced documents before implementation
-* Read `docs/glossary.md` to understand core domain concepts
+* Read `docs/v2/glossary.md` to understand core domain concepts
 * Implement only the assigned task
 * Follow existing architecture
 * Keep solutions simple and maintainable
@@ -45,7 +45,7 @@ If the task conflicts with project documentation, implementation must stop and t
 
 1. Read task fully
 2. Read all referenced documents
-3. Read `docs/glossary.md` if unfamiliar with any domain term
+3. Read `docs/v2/glossary.md` if unfamiliar with any domain term
 4. Implement task
 5. Verify all acceptance criteria are satisfied
 6. Update task status to `Review`
