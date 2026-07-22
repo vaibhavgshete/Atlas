@@ -59,6 +59,7 @@ If a milestone is unclear, the Project Manager Agent must request clarification 
 6. Monitor status — escalate if `Blocked`
 7. On Reviewer approval, move task to `tasks/completed/`
 8. On `Changes Requested`, reassign task to Developer Agent with status `Active`
+9. When a milestone opens or closes, update `docs/v2/progress.md` and the milestone document's `Status` field to match reality
 
 ---
 
@@ -77,3 +78,13 @@ If a milestone is unclear, the Project Manager Agent must request clarification 
 The Project Manager does not write ADRs.
 
 If a scope or product decision is made by the Human, the Project Manager should note it in the relevant task's `Background` section.
+
+---
+
+## Progress Tracking
+
+The Project Manager Agent owns `docs/v2/progress.md`.
+
+It is an index only — a milestone's row summary and status, linking out to the milestone document and its tasks. It must never duplicate the detail already in the milestone document.
+
+A milestone document's `Status` field and its row in `progress.md` must always agree. If they can't both be updated in the same action, treat the task as incomplete.

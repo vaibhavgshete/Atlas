@@ -36,10 +36,10 @@ Created Date: YYYY-MM-DD
 
 Required reading before implementation:
 
-* docs/glossary.md
-* docs/project-vision.md
-* docs/requirements-v0.1.md
-* docs/system-architecture-v0.1.md
+* docs/v2/glossary.md
+* docs/v2/project-vision.md
+* docs/v2/requirements-v2.0.md
+* docs/v2/system-architecture-v2.0.md
 
 Additional references:
 
