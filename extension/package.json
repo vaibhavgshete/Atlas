@@ -19,6 +19,10 @@
         "command": "atlas.enable",
         "title": "Atlas: Enable",
         "icon": "$(refresh)"
+      },
+      {
+        "command": "atlas.exportContext",
+        "title": "Atlas: Export Context (Markdown)"
       }
     ],
     "viewsContainers": {

@@ -65,3 +65,33 @@ One milestone at a time. The structural tree is the memory backbone every later 
 
 Status:
 Accepted
+
+---
+
+## ADR-005
+
+Date: 2026-07-25
+
+Decision:
+No further data-layer milestone (git history, embeddings, or any other) will be scoped or built until a validation experiment measures whether feeding the existing structural map to a coding agent changes its behaviour. See `docs/v2/experiment-01-does-the-map-move-the-agent.md`. The metric is exploration cost — file reads/greps before the first edit that survives into the final answer — with injection method frozen and the without-memory baseline kept as a true cold start.
+
+Reason:
+Every milestone past Milestone 1 assumes the map matters to an agent, and nothing has tested that. Milestone 1 proved the map is *accurate*, not that it is *useful*. The original roadmap deferred agent exposure to last, so no evidence about the core premise would exist until the end — after months of building data layers on an unvalidated foundation. Pulling the smallest end-to-end loop forward, using the map already built, makes a null result cost a day instead of a quarter. A clean null is as decisive as a positive.
+
+Status:
+Accepted
+
+---
+
+## ADR-006
+
+Date: 2026-07-25
+
+Decision:
+Vector embeddings / semantic retrieval are demoted from a planned milestone to a conditional optimization, gated behind a named trigger: revisit only when the rendered `.atlas/memory.md` exceeds ~2,000 lines on a real target repo, or when grep-for-a-known-token routinely returns more hits than are useful to hand an agent.
+
+Reason:
+At single-repo scale, the agent is already a strong semantic search engine and ripgrep is fast; an embedding index would rebuild a worse copy of retrieval intelligence that already sits in the agent's context, for a consumer that is itself a language model. Embeddings earn their keep only past a scale threshold (map no longer fits context, or grep stops discriminating) — a threshold we have no evidence of having reached. Recording the trigger now, while the reasoning is explicit, prevents the pull toward embeddings from returning later dressed as something reasonable. Embeddings would also require storing file contents, reversing the "no file contents stored" guarantee in the extension README — a decision that must be made deliberately, not slid into. Demoted, not struck.
+
+Status:
+Accepted

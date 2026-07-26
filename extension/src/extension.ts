@@ -1,7 +1,10 @@
+import * as fs from 'fs';
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { scanWorkspace } from './scanner';
 import { extractDependencies } from './dependencies';
-import { replaceMemory } from './storage';
+import { replaceMemory, readMemory } from './storage';
+import { renderMemoryMarkdown } from './contextExport';
 import { AtlasMemoryProvider } from './treeView';
 
 export function activate(context: vscode.ExtensionContext): void {
@@ -59,7 +62,28 @@ export function activate(context: vscode.ExtensionContext): void {
         }
     });
 
-    context.subscriptions.push(enableCommand, output, treeView);
+    const exportCommand = vscode.commands.registerCommand('atlas.exportContext', async () => {
+        const folders = vscode.workspace.workspaceFolders;
+        if (!folders || folders.length === 0) {
+            vscode.window.showErrorMessage('Atlas: open a folder first.');
+            return;
+        }
+
+        const rootPath = folders[0].uri.fsPath;
+        const snapshot = await readMemory(rootPath);
+        if (!snapshot) {
+            vscode.window.showErrorMessage('Atlas: no memory yet — run "Atlas: Enable" first.');
+            return;
+        }
+
+        const markdown = renderMemoryMarkdown(path.basename(rootPath), snapshot);
+        const outPath = path.join(rootPath, '.atlas', 'memory.md');
+        fs.writeFileSync(outPath, markdown);
+        output.appendLine(`Atlas: exported context -> ${outPath}`);
+        vscode.window.showInformationMessage(`Atlas: exported context to ${outPath}`);
+    });
+
+    context.subscriptions.push(enableCommand, exportCommand, output, treeView);
 }
 
 export function deactivate(): void {}

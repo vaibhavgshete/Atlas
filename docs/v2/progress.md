@@ -13,11 +13,12 @@ This is an index, not a duplicate of the detailed docs. For scope/requirements d
 | # | Milestone | Status | Summary |
 |---|-----------|--------|---------|
 | 1 | [Memory Core: Project Tree](milestone-1.md) | **Completed** | Local VS Code extension: workspace scan, `package.json`/`requirements.txt` dependency parsing, SQLite storage (`.atlas/memory.db`), sidebar Tree View. No git history, embeddings, or agent exposure yet — by design. |
-| 2 | Git History | Not started | Enrich memory with commit history, authorship, change frequency. Not yet scoped. |
-| 3 | Vector Embeddings | Not started | Semantic memory over the codebase for meaning-based retrieval. Not yet scoped. |
-| 4 | Agent Exposure | Not started | Define how an AI coding agent actually consumes this memory during a session. Not yet scoped — deliberately deferred until the memory core is proven trustworthy. |
+| — | [Experiment 01: does the map move the agent?](experiment-01-does-the-map-move-the-agent.md) | **In progress** | Gates everything below. Instrument built (map → `.atlas/memory.md` export). Measures whether feeding the existing map to an agent lowers exploration cost. No further milestone is scoped until this produces a number. See ADR-005. |
+| 2 | Git History | Gated | Behind Experiment 01. Was "next"; deferred until the map is shown to move the agent. |
+| 3 | Vector Embeddings | Demoted | No longer a planned milestone — a conditional optimization behind a named trigger (map > ~2k lines, or grep stops discriminating). See ADR-006. |
+| 4 | Agent Exposure | Partially pulled forward | Its smallest form (map → consumable Markdown) is the Experiment 01 instrument. Full milestone still unscoped. |
 
-Full roadmap and reasoning: [`project-vision.md`](project-vision.md).
+Full roadmap and reasoning: [`project-vision.md`](project-vision.md). Why the order changed: [ADR-005](decision-log.md), [ADR-006](decision-log.md).
 
 ## Milestone 1 detail
 
